@@ -17,7 +17,11 @@ mongoose.connect('mongodb://127.0.0.1:27017/LogReg')
 
 
 
-
+app.get('/api/user',async(req,res)=>{
+    const allUser= await User.find({})
+    res.json(allUser)
+    
+})
 
 
 
