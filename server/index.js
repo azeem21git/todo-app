@@ -18,9 +18,30 @@ mongoose.connect('mongodb://127.0.0.1:27017/LogReg')
 
 
 app.get('/api/user',async(req,res)=>{
-    const allUser= await User.find({})
-    res.json(allUser)
+    const allUsers = await User.find()
+    res.json(allUsers)
     
+})
+
+
+app.delete('/api/user/:id',async(req,res)=>{
+    const id = req.params.id
+    const deleteUser = await User.findByIdAndDelete(id)
+    res.json(deleteUser)
+
+
+})
+
+app.post('/api/user' ,async(req,res)=>{
+
+    const userData=  req.body
+
+    const newUser = new User(userData)
+
+    const saveUser = await newUser.save()
+    res.json(saveUser)
+
+
 })
 
 
